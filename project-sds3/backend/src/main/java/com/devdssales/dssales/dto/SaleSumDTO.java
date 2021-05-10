@@ -3,6 +3,7 @@ package com.devdssales.dssales.dto;
 import com.devdssales.dssales.entities.Seller;
 
 public class SaleSumDTO {
+	private static final long serialVersionUID = 1L;
 	private String sellerName;
 	private Double sum;
 	
@@ -27,6 +28,10 @@ public class SaleSumDTO {
 
 	public void setSum(Double sum) {
 		this.sum = sum;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	
