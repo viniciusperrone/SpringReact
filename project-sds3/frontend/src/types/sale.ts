@@ -1,4 +1,4 @@
-export type SalesData = {
+export interface SalesData {
     id: number;
     visited: number;
     deals: number;

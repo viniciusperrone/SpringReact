@@ -2,8 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import api from 'server/api';
 
-import { SalesData } from 'types/sale';
 import { SellerData } from 'types/seller';
+
+export interface SalesData {
+    id: number;
+    visited: number;
+    deals: number;
+    amount: number;
+    date: Date;
+    seller: {
+        id: number;
+        name: string;
+    }
+}
 
 interface Data {
     content: SalesData[];
