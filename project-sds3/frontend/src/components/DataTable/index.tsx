@@ -2,22 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import api from 'server/api';
 
-interface SellerData {
-    id: number;
-    name: string;
-}
-
-interface SalesData {
-    id: number;
-    visited: number;
-    deals: number;
-    amount: number;
-    date: Date;
-    seller: {
-        id: number;
-        name: string;
-    }
-}
+import { SalesData } from 'types/sale';
+import { SellerData } from 'types/seller';
 
 interface Data {
     content: SalesData[];
@@ -93,7 +79,7 @@ const DataTable: React.FC = () => {
                     {
                         sales.map(sale => (
                             <tr key={sale.id}>
-                                <td>{sale.date}</td>
+                                <td>{String(sale.date).replace('-',"/").replace('-',"/")}</td>
                                 <td>{sale.seller.name}</td>
                                 <td>{sale.visited}</td>
                                 <td>{sale.deals}</td>
