@@ -7,6 +7,7 @@ import {
 
 import Home from 'pages/Home';
 import Dashboard from 'pages/Dashboard';
+import Test from 'pages/Test';
 
 const Routes: React.FC = () =>{
     return(
@@ -15,6 +16,7 @@ const Routes: React.FC = () =>{
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/dashboard" component={Dashboard} />
+                    <Route path="/test" component={Test} />
                 </Switch>
             </Router>
         </>

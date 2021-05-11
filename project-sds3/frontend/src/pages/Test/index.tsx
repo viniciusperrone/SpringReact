@@ -48,8 +48,7 @@ interface Data {
     empty: boolean;
 }
 
-const DataTable: React.FC = () => {
-
+const Test: React.FC = () => {
     const [sellers, SetSellers] = useState<SellerData[]>([]);
     const [sales, SetSales] = useState<SalesData[]>([]);
     const [dataContent, SetDataContent] = useState<Data | null>();
@@ -70,41 +69,34 @@ const DataTable: React.FC = () => {
 
             SetDataContent(Object(response.data));
 
-            if (dataContent) {
+            if(dataContent){
                 SetSales(dataContent.content);
             }
 
         }
         getSales();
     }, []);
+
     return (
-        <div className="table-responsive">
-            <table className="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Vendedor</th>
-                        <th>Clientes visitados</th>
-                        <th>Negócios fechados</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        sales.map(sale => (
-                            <tr key={sale.id}>
-                                <td>{sale.date}</td>
-                                <td>{sale.seller.name}</td>
-                                <td>{sale.visited}</td>
-                                <td>{sale.deals}</td>
-                                <td>{sale.amount}.00</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
+        <>
+            {
+                sellers.map(seller => (
+                    <ul key={seller.id}>
+                        <span>{seller.name}</span>
+                    </ul>
+                ))
+            }
+            <div>
+                {
+                    sales.map(sale => (
+                        <ul key={sale.id}>
+                            <li>{sale.date}</li>
+                        </ul>
+                    ))
+                }
+            </div>
+        </>
     )
 }
 
-export default DataTable;
+export default Test;
