@@ -4,7 +4,7 @@ import api from 'server/api';
 
 import { SellerData } from 'types/seller';
 
-export interface SalesData {
+interface SalesData {
     id: number;
     visited: number;
     deals: number;
@@ -74,6 +74,9 @@ const DataTable: React.FC = () => {
         }
         getSales();
     }, []);
+
+    console.log(sellers);
+
     return (
         <div className="table-responsive">
             <table className="table table-striped table-sm">
