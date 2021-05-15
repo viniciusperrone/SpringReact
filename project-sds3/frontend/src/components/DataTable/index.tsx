@@ -16,40 +16,11 @@ interface SalesData {
     }
 }
 
-interface Data {
-    content: SalesData[];
-    pageable: {
-        sort: {
-            sorted: boolean;
-            unsorted: boolean;
-            empty: boolean;
-        };
-        pageNumber: number;
-        pageSize: number;
-        offset: number;
-        paged: boolean;
-        unpaged: boolean;
-    };
-    last: boolean;
-    totalPages: number;
-    totalElements: number;
-    sort: {
-        sorted: boolean;
-        unsorted: boolean;
-        empty: boolean;
-    };
-    first: boolean;
-    size: number;
-    number: number;
-    numberOfElements: number;
-    empty: boolean;
-}
 
 const DataTable: React.FC = () => {
 
     const [sellers, SetSellers] = useState<SellerData[]>([]);
     const [sales, SetSales] = useState<SalesData[]>([]);
-    const [dataContent, SetDataContent] = useState<Data | null>();
 
     useEffect(() => {
         async function getSellers() {
@@ -65,10 +36,16 @@ const DataTable: React.FC = () => {
             const response = await api.get<SalesData[]>('/sales');
 
 
-            SetDataContent(Object(response.data));
+            if(response){
 
-            if (dataContent) {
-                SetSales(dataContent.content);
+                localStorage.setItem('data', JSON.stringify(response.data));
+
+                const dataExist = localStorage.getItem('data')
+                
+                const data = dataExist ? JSON.parse(dataExist) : null;
+
+                SetSales(data.content);
+
             }
 
         }
@@ -76,6 +53,7 @@ const DataTable: React.FC = () => {
     }, []);
 
     console.log(sellers);
+    console.log(sales);
 
     return (
         <div className="table-responsive">
